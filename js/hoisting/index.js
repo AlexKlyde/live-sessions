@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-run();
 // hoisting example 1
 console.log(message);
 var message = 'Hoisting is here!';
@@ -12,8 +11,8 @@ if (a) {
   let a = 1;
 
   console.log(a);
-}
- */
+} */
+
 /* console.log(a);
 
 var a = 55;
@@ -44,13 +43,12 @@ var a = 77;
 
 function print() {
   console.log(a);
-  var a = 2;
+  const a = 2;
 }
 
 print();
 
 console.log(a);
-
 
 /* var a
 a = 77;
@@ -65,14 +63,13 @@ print();
 
 console.log(a); */
 
+/* run();
+
 function run() {
-  console.log('Run')
-}
+  console.log('Run');
+} */
 
-function go() {
-  console.log('Go')
-}
-
+/*
 //put your code here
 export function createLogger() {
   const messages = [];
@@ -115,7 +112,7 @@ logger1.error('we have a problem');
 logger1.error('error');
 logger1.log('hello');
 
-console.log(logger1.getRecords());
+console.log(logger1.getRecords()); */
 
 // const logger2 = createLogger();
 // logger2.log('Hello2');
