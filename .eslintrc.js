@@ -7,6 +7,7 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'arrow-body-style': 0,
     'no-console': 0,
     'no-alert': 0,
     'import/prefer-default-export': 0,
