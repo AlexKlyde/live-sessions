@@ -3,11 +3,16 @@ import React from 'react';
 // input: (props): number
 // output: JSX
 
-const Spinner = props => {
+const Spinner = ({size}) => {
+  const style = {
+    width: size,
+    height: size,
+  };
+
   return (
     <div
       className="spinner"
-      style={{ width: props.size, height: props.size }}
+      style={style}
     ></div>
   );
 };

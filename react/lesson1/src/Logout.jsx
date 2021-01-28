@@ -3,11 +3,11 @@ import React from 'react';
 // input: (props): function
 // output: JSX
 
-const Logout = props => {
+const Logout = ({onLogout}) => {
   return (
     <button
       className="logout btn"
-      onClick={props.onLogout}
+      onClick={onLogout}
     >
       Logout
     </button>
