@@ -1,7 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-class User extends React.Component {
+const User = () => {
+  // input: init state
+  // output: arr(state value, func to update state)
+  const [userInfo, setUserInfo] = useState({
+    avatar: null,
+    name: null,
+    location: null,
+  });
+
+  const { userId } = useParams();
+    // useEffect
+    // input: func, arr
+    // output: undefined, function
+
+    // callback
+    // input: none
+    // output: undefined,
+    useEffect(() => {
+      console.log('componentDidMount');
+
+      console.log('componentDidUpdate - when params in array changed');
+
+      fetch(`https://api.github.com/users/${userId}`)
+        .then(res => res.json())
+        .then(userData => {
+          const { avatar_url, name, location } = userData;
+
+          setUserInfo({
+            avatar: avatar_url,
+            name: name,
+            location: location,
+          });
+        });
+      
+      // return () => {
+      //   console.log('componentWillUnmount');
+      // };
+    }, [userId]);
+
+  const { avatar, name, location } = userInfo;
+  if (!avatar || !name || !location) {
+    return null;
+  }
+
+  return (
+    <div className="user">
+      <img alt="User Avatar" src={avatar} className="user__avatar" />
+      <div className="user__info">
+        <span className="user__name">{name}</span>
+        <span className="user__location">{location}</span>
+      </div>
+    </div>
+  );
+};
+
+/* class User extends React.Component {
   constructor(props) {
     super(props);
 
@@ -55,45 +110,6 @@ class User extends React.Component {
       </div>
     );
   }
-}
-
-/* const User = () => {
-  const [userData, setUserData] = useState(null);
-  const { userId } = useParams();
-
-  useEffect(() => {
-    fetch(`https://api.github.com/users/${userId}`)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        throw new Error();
-      })
-      .then(userData => {
-        setUserData(userData);
-      });
-  }, [userId]);
-
-  if (!userData) {
-    return null;
-  }
-
-  const { name, location, avatar_url } = userData;
-  return (
-    <div className="user">
-      <img alt="User Avatar" src={avatar_url} className="user__avatar" />
-      <div className="user__info">
-        <span className="user__name">{name}</span>
-        <span className="user__location">{location}</span>
-      </div>
-    </div>
-  );
-}; */
-
-// algo:
-// 1. create empty state
-// 2. make http call in componentDidMount
-// 3. handle userId change
+} */
 
 export default User;
